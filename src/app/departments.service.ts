@@ -34,23 +34,21 @@ export class DepartmentsService {
     return this.http.post<Department>(this.departmentsUrl, department, httpOptions);
   }
 
-
-
-
-    getDepartment(id: string ): Observable<Department> {
+  getDepartment(id: string ): Observable<Department> {
+  const url = `${this.departmentsUrl}/${id}`;
+  return this.http.get<Department>(url);
+  } 
+  
+  
+  updateDepatament(id: String, department : Department): Observable<any> {
     const url = `${this.departmentsUrl}/${id}`;
-    return this.http.get<Department>(url);} 
-    
-    
-    updateDepatament(id: String, department : Department): Observable<any> {
-      const url = `${this.departmentsUrl}/${id}`;
-      return this.http.put(url, department, httpOptions); 
-    }
+    return this.http.put(url, department, httpOptions); 
+  }
 
-    deleteDepatament (id: String): Observable<Department> {
-      const url = `${this.departmentsUrl}/${id}`;
-      return this.http.delete<Department>(url, httpOptions); 
-    }
+  deleteDepatament (id: String): Observable<Department> {
+    const url = `${this.departmentsUrl}/${id}`;
+    return this.http.delete<Department>(url, httpOptions); 
+  }
 
 
 }
