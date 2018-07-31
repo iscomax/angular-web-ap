@@ -6,6 +6,13 @@ import { DepartmentsComponent } from './departments/departments.component';
 import { DepartmentsDetailComponent } from './departments-detail/departments-detail.component';
 import { AppRoutingngModule } from './/app-routingng.module';
 
+import{ HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
+import { DepartmentsService } from './departments.service';
+import { InMemoryDataService } from './in-memory-data.service';
+import { HttpClient } from 'selenium-webdriver/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,9 +21,16 @@ import { AppRoutingngModule } from './/app-routingng.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingngModule
+    AppRoutingngModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
+    
   ],
-  providers: [],
+  providers: [DepartmentsService, InMemoryDataService
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
